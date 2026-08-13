@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raven — Clan Bot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#120e1a;
+    --panel:#1a1424;
+    --violet:#a78bfa;
+    --bone:#f0ebf7;
+    --muted:#a99cc2;
+    --line:rgba(167,139,250,0.16);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--bone);
+    font-family:'Quicksand',sans-serif;
+  }
+
+  .hero{
+    min-height:70vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:3rem 1.5rem;
+    background:radial-gradient(ellipse 60% 50% at 50% 20%, rgba(167,139,250,0.14), transparent 65%);
+  }
+  .logo{
+    width:140px; height:140px;
+    border-radius:50%;
+    margin-bottom:1.75rem;
+    object-fit:cover;
+    box-shadow:0 0 40px 8px rgba(167,139,250,0.3);
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(2.6rem, 10vw, 4rem);
+    margin:0;
+    color:var(--bone);
+  }
+  .tagline{
+    margin-top:0.9rem;
+    color:var(--muted);
+    font-size:1.05rem;
+    max-width:30ch;
+  }
+  .status{
+    margin-top:1.75rem;
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:0.4rem 1rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    font-size:0.85rem;
+    color:var(--muted);
+  }
+  .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:#e6c15c;
+  }
+
+  .commands{
+    max-width:680px;
+    margin:0 auto;
+    padding:2rem 1.5rem 5rem;
+  }
+  .group{ margin-bottom:2.75rem; }
+  .group h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.3rem;
+    color:var(--violet);
+    margin:0 0 1rem;
+  }
+  .cmd{
+    padding:1rem 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    gap:0.35rem;
+  }
+  .cmd:last-child{ border-bottom:none; }
+  .cmd-name{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:500;
+    font-size:0.92rem;
+    color:var(--bone);
+  }
+  .cmd-desc{
+    color:var(--muted);
+    font-size:0.95rem;
+    line-height:1.55;
+  }
+  .cmd-desc code{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    color:var(--bone);
+    background:rgba(255,255,255,0.06);
+    padding:0.12rem 0.42rem;
+    border-radius:5px;
+  }
+  .tag-admin{
+    display:inline-block;
+    margin-left:0.4rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:#e08fa8;
+    border:1px solid rgba(224,143,168,0.4);
+    padding:0.08rem 0.4rem;
+    border-radius:4px;
+    vertical-align:middle;
+  }
+
+  footer{
+    text-align:center;
+    padding:2.5rem 1.5rem;
+    color:var(--muted);
+    font-size:0.85rem;
+    border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <img class="logo" src="raven.jpg" alt="Raven" />
+    <h1>Raven</h1>
+    <p class="tagline">Moderation, roles, and voice — watching over 666.</p>
+    <div class="status"><span class="dot"></span> Idle · streaming</div>
+  </section>
+
+  <section class="commands">
+    <div class="group">
+      <h2>Moderation</h2>
+      <div class="cmd">
+        <span class="cmd-name">.to</span>
+        <span class="cmd-desc">Timeout a member for a set duration. <code>.to @user 10m spamming</code></span>
+      </div>
+      <div class="cmd">
+        <span class="cmd-name">.rto</span>
+        <span class="cmd-desc">Remove a timeout early. <code>.rto @user</code></span>
+      </div>
+      <div class="cmd">
+        <span class="cmd-name">.kick</span>
+        <span class="cmd-desc">Remove a member from the server. <code>.kick @user reason</code></span>
+      </div>
+      <div class="cmd">
+        <span class="cmd-name">.ban</span>
+        <span class="cmd-desc">Ban a member permanently. <code>.ban @user reason</code></span>
+      </div>
+      <div class="cmd">
+        <span class="cmd-name">.warn</span>
+        <span class="cmd-desc">Send a private warning via DM. <code>.warn @user reason</code></span>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Roles</h2>
+      <div class="cmd">
+        <span class="cmd-name">.ra</span>
+        <span class="cmd-desc">Add a role to a member. <code>.ra @user Officers</code></span>
+      </div>
+      <div class="cmd">
+        <span class="cmd-name">.rr</span>
+        <span class="cmd-desc">Remove a role from a member. <code>.rr @user Guests</code></span>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Voice &amp; Words</h2>
+      <div class="cmd">
+        <span class="cmd-name">.say</span>
+        <span class="cmd-desc">Post a message through Raven in this channel. <code>.say message</code></span>
+      </div>
+      <div class="cmd">
+        <span class="cmd-name">.dm</span>
+        <span class="cmd-desc">Send a private message to one member. <code>.dm @user message</code></span>
+      </div>
+      <div class="cmd">
+        <span class="cmd-name">.dmall <span class="tag-admin">admin only</span></span>
+        <span class="cmd-desc">Send a private message to every member. <code>.dmall message</code></span>
+      </div>
+      <div class="cmd">
+        <span class="cmd-name">.join / .leave</span>
+        <span class="cmd-desc">Join or leave the voice channel you're currently in.</span>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Utility</h2>
+      <div class="cmd">
+        <span class="cmd-name">.raven</span>
+        <span class="cmd-desc">Show the full command list from within Discord.</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>Raven · guarding Clan 666</footer>
+
+</body>
+</html>
